@@ -67,7 +67,7 @@ def visualize_bar(x, y, data):
         plt.ylabel("Frequency")
         plt.show()
     else:
-        if type(data[y]) == str:
+        if type(data[y][0]) == str:
             print("You cannot create a bar graph using non-numeric y-values")
         else:
             #how do you deal with duplicate x-values e.g. 2 people from india having a different number of animes_completed
@@ -83,7 +83,16 @@ def visualize_bar(x, y, data):
                 plt.show()
 
 def visualize_scatter(x, y, data):
-    pass
+    #both x and y have to be numbers
+    if type(data[x][0]) == str or type(data[y][0]) == str:
+        print(type(data[x][0]))
+        print(type(data[y][0]))
+        print("You can't create a scatter plot with non-numerical values")
+    else:
+        plt.scatter(data[x], data[y])
+        plt.xlabel(x)
+        plt.ylabel(y)
+        plt.show()
 
 while not quit:
     print("============MAIN MENU============")
@@ -120,6 +129,10 @@ while not quit:
             y = get_column("to be used as the y-axis")
             visualize_scatter(x, y, data)
     elif choice == 3:
+        #inferential statistics part
+        #idea to compare
+        #check p-value
+        #check manually (loop through the list, make a new list where every value is True/False, then check percentage of True)
         pass
     else:
         quit = True
