@@ -17,6 +17,7 @@ quit = False
 
 #menu functions
 def get_column(purpose, frequency_enabled = False):
+    #retreives a user-specified column from the data set
     while True:
         column = input("Enter which column "+ purpose +": ")
         if column not in columns:
@@ -129,11 +130,12 @@ while not quit:
     print("1. Describe column")
     print("2. Generate Graph")
     print("3. Pearson's Correlation Coefficient")
-    print("4. Quit")
+    print("4. Compare value (z-score)")
+    print("5. Quit")
     while True:
         #Repeats until user enters a choice between 1 to 4
         choice = int(input("Enter your choice here: "))
-        if choice < 1 or choice > 4:
+        if choice < 1 or choice > 5:
             print("That is not a valid choice!")
         else:
             break
@@ -163,5 +165,14 @@ while not quit:
         y = get_column("to be used as the y-axis for comparison")
         visualize_scatter(x, y, data, True) #With pearson correlation
         pass
+    elif choice == 4:
+        column = get_column("to be used for comparison")
+        if type(data[column][0]) == str:
+            print("\nYou can't obtain a z-score with a string data set!\n")
+        else:
+            #Calculate z-score
+            compare_value = int(input("Enter the amount you want to use for comparison: "))
+            zscore = (data[column].mean() + compare_value)/data[column].std()
+            print(f"The z-score of {compare_value} is {zscore}")
     else:
         quit = True
