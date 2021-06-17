@@ -131,6 +131,7 @@ while not quit:
     print("3. Pearson's Correlation Coefficient")
     print("4. Quit")
     while True:
+        #Repeats until user enters a choice between 1 to 4
         choice = int(input("Enter your choice here: "))
         if choice < 1 or choice > 4:
             print("That is not a valid choice!")
