@@ -172,7 +172,7 @@ while not quit:
         else:
             #Calculate z-score
             compare_value = int(input("Enter the amount you want to use for comparison: "))
-            zscore = (data[column].mean() + compare_value)/data[column].std()
+            zscore = (compare_value - data[column].mean())/data[column].std()
             print(f"The z-score of {compare_value} is {zscore}")
     else:
         quit = True
